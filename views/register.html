@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.80.0">
+  <title>用户登陆</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/floating-labels/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="../public/css/register.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <a href="/" title="回到首页">
+        <img class="mb-4" src="../public/images/050.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">欢迎注册</h1>
+
+    </div>
+    <p>请输入邮箱地址</p>
+    <div class="form-label-group">
+      <input type="email" id="inputEmail" class="form-control" name="email" placeholder="请输入邮箱地址" required autofocus>
+
+    </div>
+
+    <p>请输入昵称</p>
+    <div class="form-label-group">
+      <input type="text" id="inputNickname" class="form-control" name="nickname" placeholder="请输入昵称" required>
+
+    </div>
+
+    <p>请输入密码</p>
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
+
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> 记住我的账号
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
+    <div class="link_register text-center mt-4">
+      <p>已有账号? <a href="/login">点击登录</a>.</p>
+    </div>
+    <p class="mt-1 mb-3 text-muted text-center copyright">&copy; 你妹科技有限公司 Since 2021</p>
+  </form>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(".form-signin").on("submit", function (e) {
+
+      e.preventDefault();
+      console.log($(this).serialize());
+      const formData = $(this).serialize();
+      $.ajax({
+        type: "post",
+        data: formData,
+        url: "/register",
+        dataType: "json",
+        async: true,
+        success: function (data) {
+          if (data.errCode === 1) {
+            alert('此邮箱已被注册，请更改！');
+          }
+          if (data.errCode === 0) {
+            alert('注册成功！')
+            window.location.href = "/"
+          }
+        }
+      })
+    })
+  </script>
+
+</body>
+
+</html>

@@ -7,9 +7,9 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.80.0">
-  <title>Signin Template · Bootstrap v4.6</title>
+  <title>用户登陆</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/floating-labels/">
 
 
 
@@ -40,34 +40,66 @@
   <link href="../public/css/login.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
+<body>
 
   <form class="form-signin">
-    <img class="mb-4" src="../public/images/042.png" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">欢迎登陆</h1>
+    <div class="text-center mb-4">
+      <a href="/" title="回到首页">
+        <img class="mb-4" src="../public/images/042.png" alt="" width="72" height="72">
+      </a>
 
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" name="email" placeholder="请输入邮箱地址" required autofocus>
+      <h1 class="h3 mb-3 font-weight-normal">欢迎登录</h1>
 
-    <label for="inputNickname" class="sr-only">Nickname</label>
-    <input type="text" id="inputNickname" class="form-control" name="nickname" placeholder="请输入密码" required>
+    </div>
+    <p>邮箱</p>
+    <div class="form-label-group">
+      <input type="email" id="inputEmail" class="form-control" name="email" placeholder="请输入邮箱地址" required autofocus>
+      <!-- <label for="inputEmail"></label> -->
+    </div>
 
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
+    <p>密码</p>
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
+      <!-- <label for="inputPassword"></label> -->
+    </div>
 
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> 记住我的账号
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">立即登陆</button>
-    <div class="message">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">立即登录</button>
+    <div class="link_register text-center mt-4">
       <p>没有账号? <a href="/register">点击创建</a>.</p>
     </div>
-    <p class="mt-5 mb-3 text-muted copyright">&copy; 你妹科技有限公司</p>
+    <p class="mt-1 mb-3 text-muted text-center copyright">&copy; 你妹科技有限公司 Since 2021</p>
   </form>
 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(".form-signin").on("submit", function (e) {
 
+      e.preventDefault();
+      console.log($(this).serialize());
+      const formData = $(this).serialize();
+      $.ajax({
+        type: "post",
+        data: formData,
+        url: "/login",
+        dataType: "json",
+        async: true,
+        success: function (data) {
+          if (data.errCode === 1) {
+            alert('邮箱或密码错误！');
+          }
+          if (data.errCode === 0) {
+            alert('登陆成功！')
+            window.location.href = "/"
+          }
+        }
+      })
+    })
+  </script>
 
 </body>
 
