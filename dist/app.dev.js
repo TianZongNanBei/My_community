@@ -8,6 +8,8 @@ var path = require('path');
 
 var router = require('./router');
 
+var session = require('express-session');
+
 var app = express(); // 配置模板引擎
 
 app.engine('html', require('express-art-template')); // 配置bodyParser
@@ -20,7 +22,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json()); // 放出静态资源
 
 app.use('/public/', express["static"](path.join(__dirname, './public/')));
-app.use('/node_modules/', express["static"](path.join(__dirname, './node_modules/'))); // 挂载路由
+app.use('/node_modules/', express["static"](path.join(__dirname, './node_modules/'))); // 配置session
+
+app.use(session({
+  secret: 'itcast',
+  resave: false,
+  saveUninitialized: false
+})); // 挂载路由
 
 app.use(router); //  404 
 

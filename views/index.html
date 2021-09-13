@@ -47,19 +47,23 @@
 
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a class="nav-link" href="/login"> 登录 <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/register"> 注册 </a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#"> 积分商城 </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"> 个人中心 </a>
+          <a class="nav-link" href="#"> 社区热帖 </a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> 今日新闻 </a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"> 我的好友 </a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -67,12 +71,40 @@
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
+        </li> -->
+
+        <form class="form-inline my-2 my-lg-0 ml-4">
+          <input class="form-control mr-sm-2" type="text" placeholder="Javascript进阶教程" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Javascript进阶" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
-      </form>
+      </form> -->
+
+      <ul class="navbar-nav mr-5">
+        {{if user}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"> {{user}} </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">个人资料</a>
+            <a class="dropdown-item" href="#">设置</a>
+            <a class="dropdown-item" href="/quit">退出登录</a>
+          </div>
+        </li>
+        {{else}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/login"> 登录 <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/register"> 注册 </a>
+        </li>
+        {{/if}}
+
+      </ul>
     </div>
   </nav>
 
@@ -95,7 +127,7 @@
 
   <main role="main" class="container">
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm logo">
-      <img class="mr-3" src="../public/images/053.png" alt="" width="60" height="60">
+      <img class="mr-3" src="../public/images/008.png" alt="" width="60" height="60">
       <div class="lh-100">
         <h6 class="mb-0 text-white lh-100">欢迎来到广州HTML5前端开发(基友)交流社区</h6>
         <small>Based on Node.js</small>
@@ -103,92 +135,59 @@
     </div>
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">社区热帖</h6>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#007bff" /><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-        </svg>
+      <h6 class="border-bottom border-gray pb-2 mb-0">最新帖子
+        <a href="/post" class="text-right" style="float:right">我要发帖</a>
+      </h6>
+      <!-- 下面每个div是一个帖子 -->
+      <!-- 帖子模板 -->
+      <!-- <div class="media text-muted pt-3">
+        <img class="bd-placeholder-img mr-2 rounded" width="32" height="32" src="../public/images/011.png">
 
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
+          <a href=""><strong class="d-block text-gray-dark h6">@username</strong></a>
           Playing ping pong all night long, everything's all neon and hazy. Yeah, she's so in demand. She's sweet as pie
           but if you break her heart. But down to earth. It's time to face the music I'm no longer your muse. I guess
           that I forgot I had a choice.
         </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#e83e8c" /><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text>
-        </svg>
+      </div> -->
 
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
-          Standing on the frontline when the bombs start to fall. Heaven is jealous of our love, angels are crying from
-          up above. Can't replace you with a million rings. Boy, when you're with me I'll give you a taste. There’s no
-          going back. Before you met me I was alright but things were kinda heavy. Heavy is the head that wears the
-          crown.
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#6f42c1" /><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text>
-        </svg>
+      <!-- 置顶帖子 -->
+      <div class="media text-muted pt-3 border-bottom border-gray">
+        <div>
+          <img class="bd-placeholder-img mr-2 rounded" width="32" height="32" src="../public/images/053.png"><br>
+        </div>
 
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
-          Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the
-          judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels
-          are crying from up above. Yeah, you take me to utopia.
+        <p class="media-body pb-3 mb-0 small lh-125">
+          <a href=""><strong class="d-block text-gray-dark h6">【置顶】</strong></a>
+          请各位用户认真遵守网上冲浪规范<br>
+          禁止发表套路网友的贷款贴，各种美女爆照要求交友之类燥热的骗子贴，大家看到可以举报。
         </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#6f42c1" /><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text>
-        </svg>
 
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
-          Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the
-          judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels
-          are crying from up above. Yeah, you take me to utopia.
-        </p>
+        <div class="text-right mt-3">
+          <span class="h6">发帖人：超级管理员 · 你妹</span><br>
+          <span class="h6">2021-09-12 17:34:09</span>
+        </div>
       </div>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#6f42c1" /><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text>
-        </svg>
 
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
-          Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the
-          judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels
-          are crying from up above. Yeah, you take me to utopia.
-        </p>
-      </div>
-      <div class="media text-muted pt-3">
-        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#6f42c1" /><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text>
-        </svg>
+      <!-- 模板引擎渲染新发的帖子 -->
+      {{each list}}
+      <div class="media text-muted pt-3 border-bottom border-gray">
+        <img class="bd-placeholder-img mr-2 rounded" width="32" height="32" src="../public/images/011.png">
 
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">@username</strong>
-          Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the
-          judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels
-          are crying from up above. Yeah, you take me to utopia.
+        <p class="media-body pb-3 mb-0 small lh-125 ">
+          <a href=""><strong class="d-block text-gray-dark h6">{{$value.title}}</strong></a>
+          {{$value.content}}
         </p>
+
+        <div class="text-right mt-3">
+          <span class="h6">发帖人：{{$value.poster}}</span><br>
+          <span class="h6">{{$value.postTime}}</span>
+        </div>
+
       </div>
+      {{/each}}
+
+
       <small class="d-block text-right mt-3">
         <a href="#">All updates</a>
       </small>
@@ -254,6 +253,16 @@
       <a href="#">返回顶部</a>
     </p>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <!-- <script>
+    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
+  </script> -->
+  <script src="../public/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../public/js/offcanvas.js"></script>
 </body>
 
 </html>
