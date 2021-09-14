@@ -6,7 +6,10 @@ var router = express.Router();
 
 var myFunction = require('./myFunction');
 
-var postList = []; // 用于连接数据库进行增删改查
+var postList = []; // 引入积分商城数据
+
+var goods = require('./goodsData'); // 用于连接数据库进行增删改查
+
 
 var mysql = require('mysql');
 
@@ -35,14 +38,19 @@ router.post('/login', function (req, res) {
   var reqPassword = req.body.password; // 从数据库查找，验证账号密码
 
   connection.query("SELECT * FROM user WHERE email = \"".concat(reqEmail, "\" and password = \"").concat(reqPassword, "\""), function (error, result) {
-    console.log(result); //     [
-    //     RowDataPacket {
-    //         id: 1,
-    //         email: '1174234009@qq.com',
-    //         nickname: '天宗南北',
-    //         password: '123456'
-    //     }
-    // ] 
+    console.log(result); //        [
+    //   RowDataPacket {
+    //     id: 1,
+    //     email: '1174234009@qq.com',
+    //     nickname: '天宗南北',
+    //     password: '123456',
+    //     photo: '',
+    //     gender: 2,
+    //     age: null,
+    //     points: 0,
+    //     power: 0
+    //   }
+    // ]
 
     if (error) {
       return next(err);
@@ -70,14 +78,16 @@ router.get('/register', function (req, res) {
 }); // 注册新用户提交给数据库
 
 router.post('/register', function (req, res, next) {
-  // console.log(req.body);
+  console.log(req.body);
   var reqEmail = req.body.email;
   var reqNickname = req.body.nickname;
   var reqPassword = req.body.password; // 查询数据库中是否有已存在的邮箱
 
   connection.query("SELECT * FROM user WHERE email = \"".concat(reqEmail, "\""), function (error, result) {
-    // console.log(result);
+    console.log('查询结果', result);
+
     if (error) {
+      console.log('错误了');
       return next(err);
     } //结果是个数组，长度大于0就会提示邮箱已被注册
 
@@ -89,7 +99,9 @@ router.post('/register', function (req, res, next) {
       });
     } else {
       // 插入数据库
-      connection.query("INSERT INTO user VALUES(null,\"".concat(reqEmail, "\",\"").concat(reqNickname, "\",\"").concat(reqPassword, "\")"), function (error) {
+      console.log('准备插入数据库');
+      connection.query("INSERT INTO user(id,email,nickname,password) VALUES(null,\"".concat(reqEmail, "\",\"").concat(reqNickname, "\",\"").concat(reqPassword, "\")"), function (error) {
+        console.log('注册成功');
         req.session.user = reqNickname;
 
         if (error) {
@@ -134,5 +146,10 @@ router.get('/quit', function (req, res) {
   req.session.user = null; // 重定向到登录页
 
   res.redirect('/login');
-});
+}); // 渲染积分商城
+
+router.get('/shop', function (req, res) {
+  res.render('shop.html');
+}); // console.log(goods());
+
 module.exports = router;
