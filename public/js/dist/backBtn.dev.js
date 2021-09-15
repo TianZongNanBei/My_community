@@ -51,7 +51,7 @@ function () {
       });
       this.backBtn.addEventListener('click', function () {
         var timer = setInterval(function () {
-          document.documentElement.scrollTop -= 50;
+          document.documentElement.scrollTop -= 70;
 
           if (document.documentElement.scrollTop <= 0) {
             clearInterval(timer);

@@ -63,21 +63,27 @@
       <h1 class="h3 mb-3 font-weight-normal">欢迎注册</h1>
 
     </div>
-    <p>请输入邮箱地址</p>
+    <span>请输入邮箱地址</span><span class="ml-5 emailHint" style="display: none;font-weight: 700;">邮箱提示</span>
     <div class="form-label-group">
-      <input type="email" id="inputEmail" class="form-control" name="email" placeholder="请输入邮箱地址" required autofocus>
+      <input type="email" id="inputEmail" class="form-control emailIpt" name="email" placeholder="请输入邮箱地址" required
+        autofocus>
 
     </div>
 
-    <p>请输入昵称</p>
-    <div class="form-label-group">
-      <input type="text" id="inputNickname" class="form-control" name="nickname" placeholder="请输入昵称" required>
+    <span>请输入昵称 (4到20位,只能包含汉字、字母、数字下划线、减号)</span>
+    <span class="ml-5 usernameHint" style="display: none;font-weight: 700;">用户名提示</span>
+
+    <div class="form-label-group ">
+      <input type="text" id="inputNickname" class="form-control usernameIpt" name="nickname" placeholder="请输入昵称"
+        required>
 
     </div>
 
-    <p>请输入密码</p>
+    <span>请输入6-12位密码 (只能包含数字、字母 、特殊符号_!@# $ % ^ & *)</span>
+    <span class="ml-5 pwdHint" style="display: none;font-weight: 700;">密码提示</span>
     <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
+      <input type="password" id="inputPassword" class="form-control pwdIpt" name="password" placeholder="请输入密码"
+        required>
 
     </div>
 
@@ -86,7 +92,7 @@
         <input type="checkbox" value="remember-me"> 记住我的账号
       </label>
     </div> -->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
+    <button class="btn btn-lg btn-primary btn-block btn" type="submit">立即注册</button>
     <div class="link_register text-center mt-4">
       <p>已有账号? <a href="/login">点击登录</a> 或者 <a href="/">回到首页</a></p>
     </div>
@@ -94,31 +100,8 @@
   </form>
 
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    $(".form-signin").on("submit", function (e) {
 
-      e.preventDefault();
-      console.log($(this).serialize());
-      const formData = $(this).serialize();
-      $.ajax({
-        type: "post",
-        data: formData,
-        url: "/register",
-        dataType: "json",
-        async: true,
-        success: function (data) {
-          if (data.errCode === 1) {
-            alert('此邮箱已被注册，请更改！');
-          }
-          if (data.errCode === 0) {
-            alert('注册成功！')
-            window.location.href = "/"
-          }
-        }
-      })
-    })
-  </script>
-
+  <script src="../public/js/register.js"></script>
 </body>
 
 </html>
