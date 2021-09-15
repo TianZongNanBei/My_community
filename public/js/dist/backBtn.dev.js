@@ -8,6 +8,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * root  布局根元素
+ *依赖bootstrap 提供css样式
  */
 var BackBtn =
 /*#__PURE__*/

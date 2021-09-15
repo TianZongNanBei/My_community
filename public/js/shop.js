@@ -3,7 +3,7 @@
 // 3.添加页面滚动事件
 // 4.当所有数据都展示后，便不再继续加载了
 
-// 总页面
+// 总页数
 const togglePage = Math.ceil(893 / 12);
 const listBox = document.querySelector('.list-box');
 // console.log(listBox);
@@ -32,7 +32,7 @@ function renderHtml() {
                 <span class="text-muted h6 .text-danger">兑换积分: ${item.goods_price}</span>
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">立即购买</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">加入购物车</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" goods_id=${item.goods_id}>加入购物车</button>
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@ window.onscroll = function () {
   // 商品列表容器的高度+容器距离页面顶部的高度
   const boxHeight = listBox.offsetHeight + boxTop;
 
-  console.log(scrollTop, boxHeight);
+  // console.log(scrollTop, boxHeight);
 
   if (scrollTop < boxHeight) return
   if (currentPage >= togglePage) return;

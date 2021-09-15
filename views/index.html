@@ -35,6 +35,17 @@
   <!-- Custom styles for this template -->
   <link href="../public/css/offcanvas.css" rel="stylesheet">
   <link rel="stylesheet" href="../public/css/index.min.css">
+
+  <style>
+    .nav-active {
+      background-color: #58bc58;
+      color: #fff !important;
+    }
+
+    /* .nav-underline>a {
+      float: left;
+    } */
+  </style>
 </head>
 
 <body class="bg-light">
@@ -85,7 +96,7 @@
 
       <ul class="navbar-nav mr-5">
         {{if user}}
-        <img class="bd-placeholder-img mr-1 rounded mt-1" width="32" height="32" src="../public/images/053.png">
+        <img class="bd-placeholder-img mr-1 rounded mt-1" width="32" height="32" src="../public/images/018.png">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"> {{user}} </a>
@@ -114,15 +125,15 @@
       <a class="nav-link active" href="#">导航</a>
       <a class="nav-link" href="#">
         我的消息
-        <span class="badge badge-pill bg-light align-text-bottom">27</span>
+        <span class="badge badge-pill bg-light align-text-bottom" style="color: #007bff">27</span>
       </a>
-      <a class="nav-link" href="#">HTML/CSS</a>
-      <a class="nav-link" href="#">Javascript</a>
-      <a class="nav-link" href="#">Node.js</a>
-      <a class="nav-link" href="#">Vue</a>
-      <a class="nav-link" href="#">React</a>
-      <a class="nav-link" href="#">生活吐槽</a>
-      <a class="nav-link" href="#">今日新闻</a>
+      <a class="nav-type nav-link nav-active" href="#">社区首页</a>
+      <a class="nav-type nav-link" href="#">前端学习</a>
+      <a class="nav-type nav-link" href="#">后端学习</a>
+      <a class="nav-type nav-link" href="#">体育专区</a>
+      <a class="nav-type nav-link" href="#">电竞社区</a>
+      <a class="nav-type nav-link" href="#">生活吐槽</a>
+      <a class="nav-type nav-link" href="#">今日新闻</a>
     </nav>
   </div>
 
@@ -255,7 +266,7 @@
 
   <script src="../public/js/myFunction.js"></script>
 
-  <!-- 新闻资讯模块 -->
+
   <script src="../public/js/index.js"></script>
 
 </body>

@@ -3,8 +3,8 @@
 var btn = document.querySelector('.btn'); // 验证邮箱是否已被注册
 
 $(".form-signin").on("submit", function (e) {
-  e.preventDefault();
-  console.log($(this).serialize());
+  e.preventDefault(); //  console.log($(this).serialize());
+
   var formData = $(this).serialize();
   $.ajax({
     type: "post",
@@ -18,8 +18,10 @@ $(".form-signin").on("submit", function (e) {
       }
 
       if (data.errCode === 0) {
-        alert('注册成功！');
-        window.location.href = "/";
+        // alert('注册成功！')
+        new HintBtn(null, "注册成功", function () {
+          return window.location.href = "/";
+        });
       }
     }
   });

@@ -138,7 +138,6 @@ router.get('/post', function (req, res) {
     } else {
         res.render('post.html');
     }
-
 })
 
 // 记录用户的发帖信息，渲染内容到页面中

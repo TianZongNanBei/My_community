@@ -1,5 +1,6 @@
 "use strict";
 
+// 底部新闻资讯模块
 var newsBox = document.querySelector('.newsBox');
 var moreNews = document.querySelector('.moreNews'); // 换一批功能
 
@@ -58,4 +59,9 @@ function randerMore(dataArr) {
     newsItem.innerHTML = str;
     newsBox.appendChild(newsItem);
   });
-}
+} // 导航栏
+
+
+$(".nav-underline>a").on('click', function () {
+  $(this).addClass("nav-active").siblings().removeClass("nav-active");
+});
