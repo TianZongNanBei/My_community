@@ -9,20 +9,19 @@
 </head>
 
 <body>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="./public/js/promiseAjax.js"></script>
+
+
     <script>
-        $.ajax({
-            type: "get",
-            // data: formData,
-            url: "./newsData.json",
-            dataType: "json",
-            async: true,
+        ajax({
+            url: "https://v.juhe.cn/toutiao/index",
+            data: "3a00ebd6ad2f20ad4ce22c5be9480fcf",
             success: function (data) {
                 console.log(data);
             }
         })
     </script>
-
 </body>
 
 </html>

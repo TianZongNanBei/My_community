@@ -2,11 +2,15 @@ const express = require('express');
 const router = express.Router();
 const myFunction = require('./myFunction');
 const postList = [];
-// 引入积分商城数据
-const goods = require('./goodsData');
+
+const getDataArr = require('./newsData.js');
 
 // 用于连接数据库进行增删改查
 const mysql = require('mysql');
+// const {
+//     JSON
+// } = require('mysql/lib/protocol/constants/types');
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -20,7 +24,8 @@ router.get('/', (req, res) => {
     // console.log(req.session.user);
     res.render('index.html', {
         user: req.session.user,
-        list: postList
+        list: postList,
+        news: getDataArr()
     });
 })
 
@@ -86,9 +91,9 @@ router.post('/register', (req, res, next) => {
 
     // 查询数据库中是否有已存在的邮箱
     connection.query(`SELECT * FROM user WHERE email = "${reqEmail}"`, function (error, result) {
-        console.log('查询结果', result);
+        // console.log('查询结果', result);
         if (error) {
-            console.log('错误了');
+            // console.log('错误了');
             return next(err);
         }
 
@@ -100,9 +105,9 @@ router.post('/register', (req, res, next) => {
             })
         } else {
             // 插入数据库
-            console.log('准备插入数据库');
+            // console.log('准备插入数据库');
             connection.query(`INSERT INTO user(id,email,nickname,password) VALUES(null,"${reqEmail}","${reqNickname}","${reqPassword}")`, function (error) {
-                console.log('注册成功');
+                // console.log('注册成功');
                 req.session.user = reqNickname;
 
                 if (error) {
@@ -161,10 +166,5 @@ router.get('/shop', function (req, res) {
 
     res.render('shop.html');
 })
-// console.log(goods());
-
-
-
-
 
 module.exports = router;

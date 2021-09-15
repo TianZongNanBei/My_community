@@ -192,9 +192,3 @@ function getTime() {
   var seconds = nowTime.getSeconds().toString().padStart(2, '0');
   return " ".concat(year, "-").concat(month, "-").concat(dates, " ").concat(hours, ":").concat(minutes, ":").concat(seconds);
 }
-
-module.exports = {
-  getTime: getTime,
-  getRandomNumber: getRandomNumber,
-  getRandomArr: getRandomArr
-};

@@ -17,16 +17,15 @@ let currentPage = 1;
 let flag = true;
 
 function renderHtml() {
-  // 每次从数据库中截取12条数据
-  let bindList = goodsData().slice((currentPage - 1) * 12, currentPage * 12);
+    // 每次从数据库中截取12条数据
+    let bindList = goodsData().slice((currentPage - 1) * 12, currentPage * 12);
 
-  bindList.forEach((item, index) => {
-    const goodsDiv = document.createElement('div');
-    goodsDiv.className = "col-md-4";
-    goodsDiv.innerHTML =
-      ` <div class="card mb-4 shadow-sm">
+    bindList.forEach((item, index) => {
+        const goodsDiv = document.createElement('div');
+        goodsDiv.className = "col-md-4";
+        goodsDiv.innerHTML =
+            ` <div class="card mb-4 shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="${item.goods_small_logo}">
-
             <div class="card-body">
               <p class="card-text" style="height: 72px">${item.goods_name}</p>
               <div class="d-flex justify-content-between align-items-center">
@@ -35,31 +34,30 @@ function renderHtml() {
                   <button type="button" class="btn btn-sm btn-outline-secondary">立即购买</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">加入购物车</button>
                 </div>
-
               </div>
             </div>
           </div>`
-    listBox.appendChild(goodsDiv);
-  })
-  flag = true;
+        listBox.appendChild(goodsDiv);
+    })
+    flag = true;
 }
 renderHtml()
 
 window.onscroll = function () {
-  // 页面被卷去的头部+浏览器窗口的高度
-  const scrollTop = document.documentElement.scrollTop + windowHeight;
-  // 商品列表容器的高度+容器距离页面顶部的高度
-  const boxHeight = listBox.offsetHeight + boxTop;
+    // 页面被卷去的头部+浏览器窗口的高度
+    const scrollTop = document.documentElement.scrollTop + windowHeight;
+    // 商品列表容器的高度+容器距离页面顶部的高度
+    const boxHeight = listBox.offsetHeight + boxTop;
 
-  console.log(scrollTop, boxHeight);
+    console.log(scrollTop, boxHeight);
 
-  if (scrollTop < boxHeight) return
-  if (currentPage >= togglePage) return;
+    if (scrollTop < boxHeight) return
+    if (currentPage >= togglePage) return;
 
-  if (flag) {
-    flag = false;
-    currentPage++;
-    renderHtml();
-  }
+    if (flag) {
+        flag = false;
+        currentPage++;
+        renderHtml();
+    }
 
 }

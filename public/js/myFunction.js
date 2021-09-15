@@ -16,7 +16,6 @@
             return
         }
         const arr = [];
-
         while (arr.length < arrLength) {
             const randomNumber = getRandomNumber(num1, num2);
             if (!arr.some((item) => item === randomNumber)) {
@@ -192,10 +191,4 @@
         const minutes = nowTime.getMinutes().toString().padStart(2, '0');
         const seconds = nowTime.getSeconds().toString().padStart(2, '0');
         return (` ${year}-${month}-${dates} ${hours}:${minutes}:${seconds}`);
-    }
-
-    module.exports = {
-        getTime,
-        getRandomNumber,
-        getRandomArr
     }

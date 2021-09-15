@@ -29,19 +29,26 @@ function renderHtml() {
 }
 
 renderHtml();
+console.log(888);
+console.log(window);
+
+document.body.scroll.onscroll = function () {
+  console.log(7777); // // 页面被卷去的头部+浏览器窗口的高度
+  // const scrollTop = document.documentElement.scrollTop + windowHeight;
+  // // 商品列表容器的高度+容器距离页面顶部的高度
+  // const boxHeight = listBox.offsetHeight + boxTop;
+  // console.log(scrollTop, boxHeight);
+  // if (scrollTop < boxHeight) return
+  // if (currentPage >= togglePage) return;
+  // if (flag) {
+  //   flag = false;
+  //   currentPage++;
+  //   renderHtml();
+  // }
+};
+
+console.log('渲染了');
 
 window.onscroll = function () {
-  // 页面被卷去的头部+浏览器窗口的高度
-  var scrollTop = document.documentElement.scrollTop + windowHeight; // 商品列表容器的高度+容器距离页面顶部的高度
-
-  var boxHeight = listBox.offsetHeight + boxTop;
-  console.log(scrollTop, boxHeight);
-  if (scrollTop < boxHeight) return;
-  if (currentPage >= togglePage) return;
-
-  if (flag) {
-    flag = false;
-    currentPage++;
-    renderHtml();
-  }
+  console.log('Error');
 };
