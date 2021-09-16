@@ -1,8 +1,10 @@
 "use strict";
 
 // 底部新闻资讯模块
+var newsMoudle = document.querySelector('.newsMoudle');
 var newsBox = document.querySelector('.newsBox');
-var moreNews = document.querySelector('.moreNews'); // 换一批功能
+var moreNews = document.querySelector('.moreNews');
+var postMoudle = document.querySelector('.postMoudle'); // 换一批功能
 
 $(".newsChange").on("click", function (e) {
   console.log('被点击了');
@@ -59,9 +61,37 @@ function randerMore(dataArr) {
     newsItem.innerHTML = str;
     newsBox.appendChild(newsItem);
   });
-} // 导航栏
+} // 导航栏点击变色
 
 
 $(".nav-underline>a").on('click', function () {
   $(this).addClass("nav-active").siblings().removeClass("nav-active");
+}); // 页面滚动到新闻资讯
+
+$(".newsBtn").on('click', function () {
+  // console.log(newsMoudle.offsetTop);
+  // console.log(document.documentElement.scrollTop);
+  if (document.documentElement.scrollTop < newsMoudle.offsetTop - 50) {
+    var timer = setInterval(function () {
+      document.documentElement.scrollTop += 30;
+
+      if (document.documentElement.scrollTop >= newsMoudle.offsetTop - 100) {
+        clearInterval(timer);
+      }
+    }, 10);
+  }
+}); //页面滚动到社区热帖
+
+$(".postBtn").on('click', function () {
+  // console.log(postMoudle, postMoudle.offsetTop);
+  // console.log(document.documentElement.scrollTop);
+  if (document.documentElement.scrollTop > postMoudle.offsetTop - 50) {
+    var timer = setInterval(function () {
+      document.documentElement.scrollTop -= 30;
+
+      if (document.documentElement.scrollTop <= postMoudle.offsetTop - 50) {
+        clearInterval(timer);
+      }
+    }, 10);
+  }
 });

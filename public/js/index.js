@@ -1,6 +1,8 @@
 // 底部新闻资讯模块
+const newsMoudle = document.querySelector('.newsMoudle');
 const newsBox = document.querySelector('.newsBox');
 const moreNews = document.querySelector('.moreNews');
+const postMoudle = document.querySelector('.postMoudle');
 
 // 换一批功能
 
@@ -97,7 +99,38 @@ function randerMore(dataArr) {
   })
 }
 
-// 导航栏
+// 导航栏点击变色
 $(".nav-underline>a").on('click', function () {
   $(this).addClass("nav-active").siblings().removeClass("nav-active");
+})
+
+// 页面滚动到新闻资讯
+
+$(".newsBtn").on('click', function () {
+
+  // console.log(newsMoudle.offsetTop);
+  // console.log(document.documentElement.scrollTop);
+  if (document.documentElement.scrollTop < newsMoudle.offsetTop - 50) {
+    const timer = setInterval(function () {
+      document.documentElement.scrollTop += 30;
+      if (document.documentElement.scrollTop >= newsMoudle.offsetTop - 100) {
+        clearInterval(timer);
+      }
+    }, 10);
+  }
+
+})
+
+//页面滚动到社区热帖
+$(".postBtn").on('click', function () {
+  // console.log(postMoudle, postMoudle.offsetTop);
+  // console.log(document.documentElement.scrollTop);
+  if (document.documentElement.scrollTop > postMoudle.offsetTop - 50) {
+    const timer = setInterval(function () {
+      document.documentElement.scrollTop -= 30;
+      if (document.documentElement.scrollTop <= postMoudle.offsetTop - 50) {
+        clearInterval(timer);
+      }
+    }, 10);
+  }
 })
