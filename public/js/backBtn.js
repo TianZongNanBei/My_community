@@ -24,7 +24,7 @@
      }
 
      startListen() {
-         //  !!!!!!!!注意此处的this，否则影响下面的事件!!!!!!!!!!!
+         //  !!!!!!!!注意此处的this!!!!!!!!!!!
          const that = this;
 
          window.addEventListener('scroll', () => {

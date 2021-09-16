@@ -194,8 +194,23 @@
         return (` ${year}-${month}-${dates} ${hours}:${minutes}:${seconds}`);
     }
 
+
+    // 将一段字符串中的脏话替换成等量的星星
+    function replaceStr(str) {
+        const reg = /你妈|尼玛|淫荡|你爹|吃屎|fuck|操你|傻逼|shit/g;
+        const newStr = str.replace(reg, function (ev) {
+            let xingXing = '';
+            for (let i = 0; i < ev.length; i++) {
+                xingXing += '*';
+            }
+            return xingXing;
+        })
+        return newStr;
+    }
+
     module.exports = {
         getTime,
         getRandomNumber,
-        getRandomArr
+        getRandomArr,
+        replaceStr
     }

@@ -31,7 +31,7 @@ function renderHtml() {
               <div class="d-flex justify-content-between align-items-center">
                 <span class="text-muted h6 .text-danger">兑换积分: ${item.goods_price}</span>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">立即购买</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" goods_id=${item.goods_id}>立即购买</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" goods_id=${item.goods_id}>加入购物车</button>
                 </div>
               </div>

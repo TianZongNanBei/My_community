@@ -5,12 +5,11 @@ const postList = [];
 
 const getDataArr = require('./newsData.js');
 
-// 用于连接数据库进行增删改查
+// 连接数据库进行增删改查
 const mysql = require('mysql');
 // const {
 //     JSON
 // } = require('mysql/lib/protocol/constants/types');
-
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -134,7 +133,7 @@ router.post('/register', (req, res, next) => {
 // 渲染发帖页面
 router.get('/post', function (req, res) {
     if (!req.session.user) {
-        res.render('postWarn.html');
+        res.render('warn.html');
     } else {
         res.render('post.html');
     }
@@ -143,10 +142,16 @@ router.get('/post', function (req, res) {
 // 记录用户的发帖信息，渲染内容到页面中
 router.post('/post', function (req, res) {
     const message = req.body;
+    // 先过滤敏感词
+    message.title = myFunction.replaceStr(message.title);
+    message.content = myFunction.replaceStr(message.content);
+
+    // 记录作者和时间
     message.postTime = myFunction.getTime();
     message.poster = req.session.user;
+    // console.log(message, typeof message);
     postList.unshift(message);
-    console.log(postList);
+    // console.log(postList);
     res.redirect('/');
     // console.log(postList);
 })
@@ -162,8 +167,17 @@ router.get('/quit', function (req, res) {
 
 // 渲染积分商城
 router.get('/shop', function (req, res) {
+    // if (!req.session.user) {
+    //     res.render('warn.html');
+    // }
 
     res.render('shop.html');
+})
+
+// 渲染购物车
+router.get('/car', function (req, res) {
+
+    res.render('car.html');
 })
 
 module.exports = router;

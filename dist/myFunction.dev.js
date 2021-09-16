@@ -191,10 +191,26 @@ function getTime() {
   var minutes = nowTime.getMinutes().toString().padStart(2, '0');
   var seconds = nowTime.getSeconds().toString().padStart(2, '0');
   return " ".concat(year, "-").concat(month, "-").concat(dates, " ").concat(hours, ":").concat(minutes, ":").concat(seconds);
+} // 将一段字符串中的脏话替换成等量的星星
+
+
+function replaceStr(str) {
+  var reg = /你妈|尼玛|淫荡|你爹|吃屎|fuck|操你|傻逼|shit/g;
+  var newStr = str.replace(reg, function (ev) {
+    var xingXing = '';
+
+    for (var i = 0; i < ev.length; i++) {
+      xingXing += '*';
+    }
+
+    return xingXing;
+  });
+  return newStr;
 }
 
 module.exports = {
   getTime: getTime,
   getRandomNumber: getRandomNumber,
-  getRandomArr: getRandomArr
+  getRandomArr: getRandomArr,
+  replaceStr: replaceStr
 };

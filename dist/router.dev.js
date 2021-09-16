@@ -8,7 +8,7 @@ var myFunction = require('./myFunction');
 
 var postList = [];
 
-var getDataArr = require('./newsData.js'); // 用于连接数据库进行增删改查
+var getDataArr = require('./newsData.js'); // 连接数据库进行增删改查
 
 
 var mysql = require('mysql'); // const {
@@ -129,18 +129,23 @@ router.post('/register', function (req, res, next) {
 
 router.get('/post', function (req, res) {
   if (!req.session.user) {
-    res.render('postWarn.html');
+    res.render('warn.html');
   } else {
     res.render('post.html');
   }
 }); // 记录用户的发帖信息，渲染内容到页面中
 
 router.post('/post', function (req, res) {
-  var message = req.body;
+  var message = req.body; // 先过滤敏感词
+
+  message.title = myFunction.replaceStr(message.title);
+  message.content = myFunction.replaceStr(message.content); // 记录作者和时间
+
   message.postTime = myFunction.getTime();
-  message.poster = req.session.user;
-  postList.unshift(message);
-  console.log(postList);
+  message.poster = req.session.user; // console.log(message, typeof message);
+
+  postList.unshift(message); // console.log(postList);
+
   res.redirect('/'); // console.log(postList);
 }); // 处理退出登陆
 
@@ -152,6 +157,13 @@ router.get('/quit', function (req, res) {
 }); // 渲染积分商城
 
 router.get('/shop', function (req, res) {
+  // if (!req.session.user) {
+  //     res.render('warn.html');
+  // }
   res.render('shop.html');
+}); // 渲染购物车
+
+router.get('/car', function (req, res) {
+  res.render('car.html');
 });
 module.exports = router;
