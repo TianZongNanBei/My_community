@@ -111,15 +111,26 @@ $(".newsBtn").on('click', function () {
   // console.log(newsMoudle.offsetTop);
   // console.log(document.documentElement.scrollTop);
   if (document.documentElement.scrollTop < newsMoudle.offsetTop - 50) {
+
     const timer = setInterval(function () {
       document.documentElement.scrollTop += 30;
       if (document.documentElement.scrollTop >= newsMoudle.offsetTop - 100) {
         clearInterval(timer);
       }
     }, 10);
+
+  } else if (document.documentElement.scrollTop > newsMoudle.offsetTop + 160) {
+
+    const timer = setInterval(function () {
+      document.documentElement.scrollTop -= 30;
+      if (document.documentElement.scrollTop <= newsMoudle.offsetTop - 60) {
+        clearInterval(timer);
+      }
+    }, 10);
   }
 
 })
+
 
 //页面滚动到社区热帖
 $(".postBtn").on('click', function () {

@@ -22,7 +22,7 @@ function renderHtml() {
   bindList.forEach(function (item, index) {
     var goodsDiv = document.createElement('div');
     goodsDiv.className = "col-md-4";
-    goodsDiv.innerHTML = " <div class=\"card mb-4 shadow-sm\">\n            <img class=\"bd-placeholder-img card-img-top\" width=\"100%\" height=\"225\" src=\"".concat(item.goods_small_logo, "\">\n            <div class=\"card-body\">\n              <p class=\"card-text\" style=\"height: 72px\">").concat(item.goods_name, "</p>\n              <div class=\"d-flex justify-content-between align-items-center\">\n                <span class=\"text-muted h6 .text-danger\">\u5151\u6362\u79EF\u5206: ").concat(item.goods_price, "</span>\n                <div class=\"btn-group\">\n                  <button type=\"button\" class=\"btn btn-sm btn-outline-secondary\" goodsId=").concat(item.goods_id, ">\u7ACB\u5373\u8D2D\u4E70</button>\n                  <button type=\"button\" class=\"btn btn-sm btn-outline-secondary carBtn\" goodsId=").concat(item.goods_id, ">\u52A0\u5165\u8D2D\u7269\u8F66</button>\n                </div>\n              </div>\n            </div>\n          </div>");
+    goodsDiv.innerHTML = " <div class=\"card mb-4 shadow-sm\">\n            <img class=\"bd-placeholder-img card-img-top\" width=\"100%\" height=\"225\" src=\"".concat(item.goods_small_logo, "\">\n            <div class=\"card-body\">\n              <p class=\"card-text\" style=\"height: 72px\">").concat(item.goods_name, "</p>\n              <div class=\"d-flex justify-content-between align-items-center\">\n                <span class=\"text-muted h6 .text-danger\">\u5151\u6362\u79EF\u5206: ").concat(item.goods_price, "</span>\n                <div class=\"btn-group\">\n                  <button type=\"button\" class=\"btn btn-sm btn-outline-secondary buyBtn\" goodsId=").concat(item.goods_id, ">\u7ACB\u5373\u8D2D\u4E70</button>\n                  <button type=\"button\" class=\"btn btn-sm btn-outline-secondary carBtn\" goodsId=").concat(item.goods_id, ">\u52A0\u5165\u8D2D\u7269\u8F66</button>\n                </div>\n              </div>\n            </div>\n          </div>");
     listBox.appendChild(goodsDiv);
   });
   flag = true;
@@ -78,4 +78,9 @@ $(".container").on("click", ".carBtn", function () {
   }
 
   localStorage.setItem("car", JSON.stringify(carList));
+}); // 立即购买按钮
+// buyBtn
+
+$(".container").on("click", ".buyBtn", function () {
+  alert("购买成功！");
 });

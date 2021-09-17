@@ -168,3 +168,33 @@ $(".clear-all").click(function () {
     localStorage.removeItem("car");
     goodsBox.innerHTML = `<h1>您的购物车空空如也...快去选购吧！</h1>`;
 })
+
+
+// 点击结算
+// btn-area
+
+$(".btn-area").click(function () {
+
+    if (($(".price-sum em").text().substring(1) * 1) !== 0) {
+        alert("购买成功！");
+        const goodsIds = [];
+        $(".j-checkbox:checked").parents(".cart-item").each((index, item) => {
+            goodsIds.push($(item).attr("goodsId") * 1);
+        })
+        console.log(goodsIds);
+        goodsIds.forEach((item, index) => {
+            const goodsIndex = carList.findIndex((e) => {
+                return e.goods_id === goodsIds[index];
+            })
+            console.log(goodsIndex);
+            carList.splice(goodsIndex, 1)
+            localStorage.setItem("car", JSON.stringify(carList));
+        })
+
+        $(".j-checkbox:checked").parents(".cart-item").remove();
+        getSum();
+        renderEmpty()
+    } else {
+        alert("请您确认购物车，勾选需要结算的商品！");
+    }
+})

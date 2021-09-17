@@ -31,7 +31,7 @@ function renderHtml() {
               <div class="d-flex justify-content-between align-items-center">
                 <span class="text-muted h6 .text-danger">兑换积分: ${item.goods_price}</span>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" goodsId=${item.goods_id}>立即购买</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary buyBtn" goodsId=${item.goods_id}>立即购买</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary carBtn" goodsId=${item.goods_id}>加入购物车</button>
                 </div>
               </div>
@@ -97,4 +97,11 @@ $(".container").on("click", ".carBtn", function () {
     carList[goodsIndex]["cart_number"]++
   }
   localStorage.setItem("car", JSON.stringify(carList))
+})
+
+// 立即购买按钮
+
+// buyBtn
+$(".container").on("click", ".buyBtn", function () {
+  alert("购买成功！");
 })

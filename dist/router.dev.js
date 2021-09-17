@@ -157,10 +157,9 @@ router.get('/quit', function (req, res) {
 }); // 渲染积分商城
 
 router.get('/shop', function (req, res) {
-  if (!req.session.user) {
-    res.render('warn.html');
-  }
-
+  // if (!req.session.user) {
+  //     res.render('warn.html');
+  // }
   res.render('shop.html');
 }); // 渲染购物车
 

@@ -143,4 +143,29 @@ $(".clear-all").click(function () {
   getSum();
   localStorage.removeItem("car");
   goodsBox.innerHTML = "<h1>\u60A8\u7684\u8D2D\u7269\u8F66\u7A7A\u7A7A\u5982\u4E5F...\u5FEB\u53BB\u9009\u8D2D\u5427\uFF01</h1>";
+}); // 点击结算
+// btn-area
+
+$(".btn-area").click(function () {
+  if ($(".price-sum em").text().substring(1) * 1 !== 0) {
+    alert("购买成功！");
+    var goodsIds = [];
+    $(".j-checkbox:checked").parents(".cart-item").each(function (index, item) {
+      goodsIds.push($(item).attr("goodsId") * 1);
+    });
+    console.log(goodsIds);
+    goodsIds.forEach(function (item, index) {
+      var goodsIndex = carList.findIndex(function (e) {
+        return e.goods_id === goodsIds[index];
+      });
+      console.log(goodsIndex);
+      carList.splice(goodsIndex, 1);
+      localStorage.setItem("car", JSON.stringify(carList));
+    });
+    $(".j-checkbox:checked").parents(".cart-item").remove();
+    getSum();
+    renderEmpty();
+  } else {
+    alert("请您确认购物车，勾选需要结算的商品！");
+  }
 });

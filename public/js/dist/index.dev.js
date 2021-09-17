@@ -79,6 +79,14 @@ $(".newsBtn").on('click', function () {
         clearInterval(timer);
       }
     }, 10);
+  } else if (document.documentElement.scrollTop > newsMoudle.offsetTop + 160) {
+    var _timer = setInterval(function () {
+      document.documentElement.scrollTop -= 30;
+
+      if (document.documentElement.scrollTop <= newsMoudle.offsetTop - 60) {
+        clearInterval(_timer);
+      }
+    }, 10);
   }
 }); //页面滚动到社区热帖
 
